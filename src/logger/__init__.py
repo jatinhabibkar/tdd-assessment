@@ -1,9 +1,6 @@
 #  Copyright (c) 2025. Jatin Habibkar
 #  This code is licensed under the MIT License.
 
-#  Copyright (c) 2025. Jatin Habibkar
-#  This code is licensed under the MIT License.
-
 # Configure logger
 # Adding log time to info level
 import logging
