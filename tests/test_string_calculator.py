@@ -24,5 +24,8 @@ class MyTestCase(unittest.TestCase):
     def test_n_number_case_return_sum(self):
         self.assertEqual(self.calculator.add("8,7,10,13,1,1"), 40, "Expected 40 for an '8,7,10,13,1,1' string input")
 
+    def test_to_handle_new_line_instead_of_comma(self):
+        self.assertEqual(self.calculator.add("1\n2,3"),6,"Expected 6 for an '1\n2,3' string input")
+
 if __name__ == '__main__':
     unittest.main()
