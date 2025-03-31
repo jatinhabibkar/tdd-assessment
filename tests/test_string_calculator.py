@@ -27,5 +27,7 @@ class MyTestCase(unittest.TestCase):
     def test_to_handle_new_line_instead_of_comma(self):
         self.assertEqual(self.calculator.add("1\n2,3"),6,"Expected 6 for an '1\n2,3' string input")
 
+    def test_support_for_custom_delimiter(self):
+        self.assertEqual(self.calculator.add("//;\n1;2"),3,"Expected 3 for an '//;\n1;2' string input")
 if __name__ == '__main__':
     unittest.main()
