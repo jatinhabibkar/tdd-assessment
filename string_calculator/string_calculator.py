@@ -12,4 +12,6 @@ class StringCalculator:
             return 0
         if length_of_input == 1:
             return int(input_string)
-        return 0
+
+        list_of_number_in_string_format = input_string.split(",")
+        return int(list_of_number_in_string_format[0]) + int(list_of_number_in_string_format[1])
