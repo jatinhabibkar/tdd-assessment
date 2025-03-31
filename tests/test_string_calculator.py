@@ -3,6 +3,8 @@
 
 import unittest
 
+from string_calculator.string_calculator import StringCalculator
+
 class MyTestCase(unittest.TestCase):
     def setUp(self):
         self.calculator = StringCalculator()
