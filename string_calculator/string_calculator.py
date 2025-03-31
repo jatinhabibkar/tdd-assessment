@@ -14,4 +14,7 @@ class StringCalculator:
             return int(input_string)
 
         list_of_number_in_string_format = input_string.split(",")
-        return int(list_of_number_in_string_format[0]) + int(list_of_number_in_string_format[1])
+        sum_of_elements = 0
+        for element in list_of_number_in_string_format:
+            sum_of_elements += int(element)
+        return sum_of_elements
