@@ -1,5 +1,6 @@
 #  Copyright (c) 2025. Jatin Habibkar
 #  This code is licensed under the MIT License.
+import re
 
 class StringCalculator:
     def add(self, input_string):
@@ -13,7 +14,7 @@ class StringCalculator:
         if length_of_input == 1:
             return int(input_string)
 
-        list_of_number_in_string_format = input_string.split(",")
+        list_of_number_in_string_format = re.split(",|\n",input_string)
         sum_of_elements = 0
         for element in list_of_number_in_string_format:
             sum_of_elements += int(element)
