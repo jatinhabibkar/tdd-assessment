@@ -3,7 +3,7 @@
 import re
 
 class StringCalculator:
-    def add(self, input_string):
+    def add(self, input_string: str):
         if not input_string:
             return 0
 
@@ -14,7 +14,14 @@ class StringCalculator:
         if length_of_input == 1:
             return int(input_string)
 
-        list_of_number_in_string_format = re.split(",|\n",input_string)
+        delimiter = ",|\n"
+
+        if input_string.startswith("//"):
+            match = re.match(r"//(.+)\n(.*)", input_string)
+            if match:
+                delimiter, input_string = match.groups()
+
+        list_of_number_in_string_format = re.split(delimiter,input_string)
         sum_of_elements = 0
         for element in list_of_number_in_string_format:
             sum_of_elements += int(element)
