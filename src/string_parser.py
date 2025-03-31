@@ -1,7 +1,5 @@
 #  Copyright (c) 2025. Jatin Habibkar
 #  This code is licensed under the MIT License.
-from src.custom_exception.custom_exception import InvalidInputException
-
 from src.utility import IStringParserInterface
 
 
