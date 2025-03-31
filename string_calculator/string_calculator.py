@@ -2,5 +2,14 @@
 #  This code is licensed under the MIT License.
 
 class StringCalculator:
-    def add(self,input_string):
+    def add(self, input_string):
+        if not input_string:
+            return 0
+
+        length_of_input = len(input_string)
+
+        if length_of_input == 0:
+            return 0
+        if length_of_input == 1:
+            return int(input_string)
         return 0
