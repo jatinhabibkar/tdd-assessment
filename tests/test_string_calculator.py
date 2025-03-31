@@ -18,5 +18,8 @@ class MyTestCase(unittest.TestCase):
     def test_one_number_case_return_sum(self):
         self.assertEqual(self.calculator.add("1"), 1, "Expected 1 for an '1' string input")
 
+    def test_two_number_case_return_sum(self):
+        self.assertEqual(self.calculator.add("1,2"), 3, "Expected 3 for an '1,2' string input")
+
 if __name__ == '__main__':
     unittest.main()
