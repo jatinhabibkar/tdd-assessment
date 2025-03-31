@@ -17,9 +17,10 @@ class StringCalculator:
         delimiter = ",|\n"
 
         if input_string.startswith("//"):
-            match = re.match(r"//(.+)\n(.*)", input_string)
+            match = re.match(r"^//(.+)\n([\s\S]*)$", input_string)
             if match:
                 delimiter, input_string = match.groups()
+                delimiter+="|\n"
 
         list_of_number_in_string_format = re.split(delimiter,input_string)
         sum_of_elements = 0
