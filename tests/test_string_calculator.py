@@ -42,5 +42,11 @@ class MyTestCase(unittest.TestCase):
             self.calculator.add("1,-2,3,-4")
         self.assertEqual("Negative numbers not allowed -2,-4",str(context.exception))
 
+    def test_variable_length_custom_delimiter(self):
+        self.assertEqual(6,self.calculator.add("//[***]\n1***2***3"),"Expected 6 for an '//[***]\n1***2***3' string input")
+
+    def test_variable_length_multiple_custom_delimiter(self):
+        self.assertEqual(6,self.calculator.add("//[***][a]\n1a2***3"),"Expected 6 for an '//[***]\n1***2***3' string input")
+
 if __name__ == '__main__':
     unittest.main()
