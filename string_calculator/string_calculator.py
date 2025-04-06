@@ -30,6 +30,8 @@ class StringCalculator:
         negatives = []
         for element in list_of_number_in_string_format:
             element_integer_format: int = int(element)
+            if element_integer_format > 1000:
+                continue
             if element_integer_format < 0:
                 negatives.append(element)
             list_of_number.append(int(element_integer_format))
