@@ -2,6 +2,9 @@
 #  This code is licensed under the MIT License.
 import re
 
+from string_calculator.custom_exception import NegativeNumberInputException
+
+
 class StringCalculator:
     def add(self, input_string: str):
         if not input_string:
@@ -20,10 +23,18 @@ class StringCalculator:
             match = re.match(r"^//(.+)\n([\s\S]*)$", input_string)
             if match:
                 delimiter, input_string = match.groups()
-                delimiter+="|\n"
+                delimiter += "|\n"
 
-        list_of_number_in_string_format = re.split(delimiter,input_string)
-        sum_of_elements = 0
+        list_of_number_in_string_format = re.split(delimiter, input_string)
+        list_of_number = []
+        negatives = []
         for element in list_of_number_in_string_format:
-            sum_of_elements += int(element)
-        return sum_of_elements
+            element_integer_format: int = int(element)
+            if element_integer_format < 0:
+                negatives.append(element)
+            list_of_number.append(int(element_integer_format))
+
+        if negatives:
+            raise NegativeNumberInputException(negatives)
+
+        return sum(list_of_number)

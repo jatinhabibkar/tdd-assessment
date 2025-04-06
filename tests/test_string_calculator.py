@@ -3,6 +3,7 @@
 
 import unittest
 
+from string_calculator.custom_exception import NegativeNumberInputException
 from string_calculator.string_calculator import StringCalculator
 
 class MyTestCase(unittest.TestCase):
