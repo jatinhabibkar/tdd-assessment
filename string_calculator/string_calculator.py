@@ -17,15 +17,22 @@ class StringCalculator:
         if length_of_input == 1:
             return int(input_string)
 
-        delimiter = ",|\n"
+        delimiter = [",", "\n"]
 
         if input_string.startswith("//"):
             match = re.match(r"^//(.+)\n([\s\S]*)$", input_string)
             if match:
-                delimiter, input_string = match.groups()
-                delimiter += "|\n"
+                delimiter_section, input_string = match.groups()
+                custom_delimiters = re.findall(r"\[(.*?)\]", delimiter_section)
+                if custom_delimiters:
+                    delimiter = custom_delimiters
+                else:
+                    delimiter = [delimiter_section]
+                delimiter.append("\n")
 
-        list_of_number_in_string_format = re.split(delimiter, input_string)
+        delimiter_pattern = "|".join(map(re.escape, delimiter))
+
+        list_of_number_in_string_format = re.split(delimiter_pattern, input_string)
         list_of_number = []
         negatives = []
         for element in list_of_number_in_string_format:
