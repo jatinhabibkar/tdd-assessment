@@ -34,6 +34,9 @@ class MyTestCase(unittest.TestCase):
     def test_support_for_custom_delimiter_with_new_line_as_delimiter(self):
         self.assertEqual( 7,self.calculator.add("//;\n1;2\n4"), "Expected 7 for an '//;\n1;2\n4' string input")
 
+    def test_ignore_number_greater_than_1000(self):
+        self.assertEqual(3,self.calculator.add("//;\n1;2;1001"),"Expected 3 for an '//;\n1;2;1001' string input")
+
     def test_negative_numbers(self):
         with self.assertRaises(NegativeNumberInputException) as context:
             self.calculator.add("1,-2,3,-4")
