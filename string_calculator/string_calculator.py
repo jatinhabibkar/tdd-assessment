@@ -4,46 +4,46 @@ import re
 
 from string_calculator.custom_exception import NegativeNumberInputException
 
+DEFAULT_DELIMITERS = [",", "\n"]
+
+
+def create_regex_pattern(delimiters: [str]) -> str:
+    # delimiter1|delimiter2|delimiter3
+    return "|".join(map(re.escape, delimiters))
+
 
 class StringCalculator:
-    def add(self, input_string: str):
+    def add(self, input_string: str) -> int:
         if not input_string:
             return 0
 
-        length_of_input = len(input_string)
-
-        if length_of_input == 0:
-            return 0
-        if length_of_input == 1:
-            return int(input_string)
-
-        delimiter = [",", "\n"]
-
-        if input_string.startswith("//"):
-            match = re.match(r"^//(.+)\n([\s\S]*)$", input_string)
+        delimiters: [str] = DEFAULT_DELIMITERS
+        input_string_to_process: str = input_string
+        # overwrite the input_string_to_process and delimiters if custom delimiter is passed
+        if input_string_to_process.startswith("//"):
+            match = re.match(r"^//(.+)\n([\s\S]*)$", input_string_to_process)
             if match:
-                delimiter_section, input_string = match.groups()
+                delimiter_section, input_string_to_process = match.groups()
                 custom_delimiters = re.findall(r"\[(.*?)\]", delimiter_section)
                 if custom_delimiters:
-                    delimiter = custom_delimiters
+                    delimiters = custom_delimiters
                 else:
-                    delimiter = [delimiter_section]
-                delimiter.append("\n")
+                    delimiters = [delimiter_section]
+                delimiters.append("\n")
 
-        delimiter_pattern = "|".join(map(re.escape, delimiter))
-
-        list_of_number_in_string_format = re.split(delimiter_pattern, input_string)
-        list_of_number = []
-        negatives = []
-        for element in list_of_number_in_string_format:
-            element_integer_format: int = int(element)
-            if element_integer_format > 1000:
+        list_of_numbers_from_input_string_section: [str] = re.split(create_regex_pattern(delimiters),
+                                                                    input_string_to_process)
+        list_of_numbers: [int] = []
+        negative_numbers: [int] = []
+        for element in list_of_numbers_from_input_string_section:
+            number: int = int(element)
+            if number > 1000:
                 continue
-            if element_integer_format < 0:
-                negatives.append(element)
-            list_of_number.append(int(element_integer_format))
+            if number < 0:
+                negative_numbers.append(element)
+            list_of_numbers.append(number)
 
-        if negatives:
-            raise NegativeNumberInputException(negatives)
+        if negative_numbers:
+            raise NegativeNumberInputException(negative_numbers)
 
-        return sum(list_of_number)
+        return sum(list_of_numbers)
